@@ -12,13 +12,16 @@ LABEL maintainer="${USER_NAME} <${USER_EMAIL}>" \
         io.w6d.build-date=$BUILD_DATE \
         io.w6d.version=$VERSION
 
+USER 0
+
 RUN export PATH="/usr/local/sbt/bin:$PATH" \
     && apt update && apt install -y \
     git                             \
     curl                            \
-    jq                            \
-    && rm -rf /var/lib/apt/lists/* \
-    wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz -O - | tar xz \
+    jq                              \
+    wget                            \
+    && rm -rf /var/lib/apt/lists/*  \
+    && wget -O - https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz | tar xz \
     && mv yq_linux_amd64 /usr/bin/yq
 
-
+USER 1001
