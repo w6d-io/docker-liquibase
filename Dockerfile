@@ -20,6 +20,7 @@ RUN export PATH="/usr/local/sbt/bin:$PATH" \
     curl                            \
     jq                              \
     wget                            \
+    postgresql-client               \
     && rm -rf /var/lib/apt/lists/*  \
     && wget -O - https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz | tar xz \
     && mv yq_linux_amd64 /usr/bin/yq
