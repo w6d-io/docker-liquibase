@@ -14,14 +14,16 @@ LABEL maintainer="${USER_NAME} <${USER_EMAIL}>" \
 
 USER 0
 
-RUN export PATH="/usr/local/sbt/bin:$PATH" \
-    && apt update && apt install -y \
-    git                             \
-    curl                            \
-    jq                              \
-    wget                            \
-    postgresql-client               \
-    && rm -rf /var/lib/apt/lists/*  \
+RUN export PATH="/usr/local/sbt/bin:$PATH"                  \
+    && apt update && apt install -y                         \
+    git                                                     \
+    curl                                                    \
+    jq                                                      \
+    wget                                                    \
+    postgresql-client                                       \
+    && rm -rf /var/lib/apt/lists/*                          \
+    && curl -sSL https://git.io/get-mo -o /usr/local/bin/mo \
+    && chmod +x /usr/local/bin/mo                           \
     && wget -O - https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz | tar xz \
     && mv yq_linux_amd64 /usr/bin/yq
 
